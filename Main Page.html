@@ -246,10 +246,11 @@
         padding: 0;
     }
     .slideshow-container {
-        position: relative;
-        max-width: 100%;
-        height: 70vh;
-        min-height: 500px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         overflow: hidden;
         box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         margin: 0 auto;
@@ -991,7 +992,7 @@
         <h2 class="text-center">About Our Mission</h2>
         <div class="about-content">
             <p>
-                environmental engineering, aquaculture, advanced spreadsheet modeling, renewable energy solutions, international trade, and financial expertise.
+                Environmental engineering, aquaculture, advanced spreadsheet modeling, renewable energy solutions, international trade, and financial expertise.
             </p>
             <p>
                 We are committed to delivering innovative and high-quality services in engineering and sustainable aquaculture, while advancing technological solutions and knowledge-driven practices. In parallel, we enhance global business opportunities through export-import operations, regulatory compliance, and strategic brand development.
@@ -1024,7 +1025,6 @@
 <div class="wave-divider">
     <div class="wave"></div>
     <div class="wave"></div>
-    <div class="wave"></div>
 </div>
 <!-- Team -->
 <section class="team section" id="team">
@@ -1040,6 +1040,33 @@
                     <span class="member-role">R&D & Modeling</span>
                 </div>
             </div>
+            <!-- Mohammad Gholizadeh -->
+            <div class="member" onclick='openResume("gholizadeh")'>
+                <img src="images/gholizadeh.png" alt="Mohammad Gholizadeh">
+                <div class="member-content">
+                    <h3>Mohammad Gholizadeh</h3>
+                    <p>Environmental Engineering PhD</p>
+                    <span class="member-role">R&D & Bioeconomic Modeling</span>
+                </div>
+            </div>
+              <!-- Ali Haji Ketabi -->
+            <div class="member" onclick='openResume("hajiketabi")'>
+                <img src="images/Ali.jpg" alt="Ali Haji Ketabi">
+                <div class="member-content">
+                    <h3>Ali Haji Ketabi</h3>
+                    <p>Environmental Engineer</p>
+                    <span class="member-role">R&D & Modeling</span>
+                </div>
+            </div>
+              <!-- Afshin Kiani -->
+            <div class="member" onclick='openResume("kiani")'>
+                <img src="images/Ali.jpg" alt="Afshin Kiani">
+                <div class="member-content">
+                    <h3>Afshin Kiani</h3>
+                    <p>Environmental Engineer</p>
+                    <span class="member-role">R&D & Modeling</span>
+                </div>
+            </div>
             <!-- Other team members can go here -->
             <!--
             <div class="member" onclick='openResume("jane")'>
@@ -1051,15 +1078,6 @@
                 </div>
             </div>
             -->
-            <!-- Mohammad Gholizadeh -->
-            <div class="member" onclick='openResume("gholizadeh")'>
-                <img src="images/gholizadeh.png" alt="Mohammad Gholizadeh">
-                <div class="member-content">
-                    <h3>Mohammad Gholizadeh</h3>
-                    <p>Environmental Engineer (Aquaculture Modeling)</p>
-                    <span class="member-role">R&D & Bioeconomic Modeling</span>
-                </div>
-            </div>
             <!-- Rouhollah Khodabandelou -->
             <div class="member" onclick='openResume("khodabandelou")'>
                 <img src="images/Khodabandelou.jpg" alt="Rouhollah Khodabandelou">
@@ -1085,14 +1103,14 @@
     <div class="container">
         <div class="footer-content">
             <h3>ABADIS</h3>
-            <p>Contact us: mehmetali@example.com | +1 234 567 890</p>
+            <p>Contact us: Abadis.omantrade@gmail.com | (+96) 892-11-03-71</p>
             <div class="footer-links">
                 <a href="#">LinkedIn</a>
                 <a href="#">Facebook</a>
                 <a href="#">Instagram</a>
                 <a href="#">Twitter</a>
             </div>
-            <p style="margin-top: 3rem; opacity: 0.8; font-size: 1rem;">© 2023 Abadis. Protecting our oceans, one harvest at a time.</p>
+            <p style="margin-top: 3rem; opacity: 0.8; font-size: 1rem;">© 2025 Abadis. Protecting our oceans, one harvest at a time.</p>
         </div>
     </div>
 </footer>
@@ -1180,7 +1198,7 @@ const resumeData = {
         name: "Mohammad Gholizadeh",
         role: "Environmental Engineer (Aquaculture Modeling)",
         department: "R&D & Bioeconomic Modeling",
-        phone: "(+98) 912-20-10-715",
+        phone: "(+96) 891-98-44-47",
         email: "mohamadgh@gmail.com",
         linkedin: "https://www.linkedin.com/in/mohammad-gholizadeh-...",
         experience: [
@@ -1197,7 +1215,7 @@ const resumeData = {
             "Design of 20 Shrimp Farm Complexes.",
             "BioEconomic Model & Production Plan Optimization for about 30 Aquaculture Projects.",
             "FSM Fish Farm Scale Model for 20 projects.",
-            "Marine Hatchery in Qeshem Island Engineering and Modeling.",
+            "Marine Hatchery in Qeshm Island Engineering and Modeling.",
             "Caviar Fish farms in Caspian sea coastline Engineering and Modeling (3 private sector).",
             "Shrimp Farm Complex in Oman Production Plan Modeling.",
             "PAW Plasma Activated Water in RAS.",
@@ -1262,6 +1280,57 @@ const resumeData = {
             "2005-2006: M.S. in Educational Technology, Arak University, Arak, Iran.",
             "2000-2004: BA in Educational Technology, Arak University, Arak, Iran."
         ]
+    },
+    hajiketabi: {
+        name: "Ali Haji Ketabi",
+        role: "Environmental Engineer",
+        department: "R&D & Modeling",
+        phone: "+98 (935) 355 4788",
+        email: "hajiketabi@usc.ac.ir",
+        email2: "E-a.hajiketabi@gmail.com",
+        experience: [
+            "Environmental Engineering with expertise in software engineering, systems analysis, and technology transfer.",
+            "Extensive experience in developing software solutions for environmental and engineering challenges.",
+            "Research and development in computational modeling and data analysis.",
+            "Technology transfer and innovation in environmental systems."
+        ],
+        projects: [
+            "Software Engineering Projects: UPS systems, AO systems, Water treatment systems, Process control systems.",
+            "Systems Analysis Projects: Environmental monitoring systems, Data analysis tools, Simulation models.",
+            "Technology Transfer Projects: Implementation of advanced environmental technologies, Training and development programs.",
+            "Research Projects: Environmental impact assessment, Sustainability studies, Innovation in environmental systems."
+        ],
+        skills: "Environmental Engineering, Software Engineering, Systems Analysis, Technology Transfer, Data Analysis, Environmental Modeling, Process Control",
+        education: [
+            "PhD in Environmental Engineering - University of Science and Culture (USC), Tehran, Iran",
+            "MSc in Environmental Engineering",
+            "BSc in Environmental Engineering"
+        ]
+    },
+    kiani: {
+        name: "Afshin Kiani",
+        role: "Environmental Engineer",
+        department: "R&D & Modeling",
+        phone: "+98 (912) 123 4567",
+        email: "afshin.kiani@example.com",
+        experience: [
+            "Environmental Engineer with expertise in sustainable development and environmental systems.",
+            "Specialized in environmental impact assessment and sustainable resource management.",
+            "Experience in developing environmental policies and regulations.",
+            "Research in renewable energy and environmental conservation."
+        ],
+        projects: [
+            "Sustainable Development Projects: Environmental impact assessment, Resource management, Policy development.",
+            "Renewable Energy Projects: Solar energy systems, Wind energy assessment, Energy efficiency studies.",
+            "Environmental Conservation Projects: Biodiversity studies, Ecosystem management, Conservation planning.",
+            "Research Projects: Climate change studies, Environmental monitoring, Sustainable technologies."
+        ],
+        skills: "Environmental Engineering, Sustainable Development, Environmental Impact Assessment, Renewable Energy, Environmental Policy, Conservation, Climate Change",
+        education: [
+            "PhD in Environmental Engineering",
+            "MSc in Environmental Engineering",
+            "BSc in Environmental Engineering"
+        ]
     }
 };
 // Enhanced Modal Function for Structured Resumes - Modified to show Projects before Education
@@ -1271,7 +1340,6 @@ function openResume(memberId) {
         console.error("Resume data not found for member ID:", memberId);
         return;
     }
-
     // Helper function to safely create a section if data exists and is an array
     function createListSection(title, dataArray) {
         if (dataArray && Array.isArray(dataArray) && dataArray.length > 0) {
@@ -1286,7 +1354,6 @@ function openResume(memberId) {
         }
         return ''; // Return empty string if no data
     }
-
     // Helper function for simple text fields
     function createTextSection(title, textContent) {
          if (textContent) { // Check if it's not null, undefined, or empty string
@@ -1299,26 +1366,31 @@ function openResume(memberId) {
         }
         return '';
     }
-
     // Ensure contact links are safe
     const linkedinLink = data.linkedin || "#";
     const websiteLink = data.website || "#";
     const phoneText = data.phone || 'N/A';
     const emailText = data.email || 'N/A';
-
+    const email2Text = data.email2 || '';
+    
+    let contactContent = `<p><strong>📞</strong> ${phoneText} | <strong>✉️</strong> ${emailText}`;
+    if (email2Text) {
+        contactContent += ` | ${email2Text}`;
+    }
+    contactContent += ` | <strong>🔗</strong> <a href="${linkedinLink}" target="_blank">LinkedIn</a>`;
+    
+    // Add website link only if it exists and is not a placeholder
+    if (data.website && data.website !== "#") {
+        contactContent += ` | <strong>🌐</strong> <a href="${websiteLink}" target="_blank">Website</a>`;
+    }
+    contactContent += `</p>`;
+    
     // Build the content using the helper, placing Projects before Education
     let content = `
         <div class="resume-contact">
-            <p><strong>📞</strong> ${phoneText} | <strong>✉️</strong> ${emailText} | <strong>🔗</strong> <a href="${linkedinLink}" target="_blank">LinkedIn</a>`;
-
-    // Add website link only if it exists and is not a placeholder
-    if (data.website && data.website !== "#") {
-        content += ` | <strong>🌐</strong> <a href="${websiteLink}" target="_blank">Website</a>`;
-    }
-    content += `</p>
+            ${contactContent}
         </div>
     `;
-
     // Use the helper for each section in the desired order
     content += createListSection("Experience Highlights", data.experience);
     content += createListSection("Projects", data.projects); // <-- Projects section moved up
@@ -1328,18 +1400,15 @@ function openResume(memberId) {
     content += createListSection("Research Interests", data.researchInterests);
     content += createListSection("Professional Memberships", data.memberships);
     content += createListSection("Publications", data.publications);
-
     // Update the modal content
     document.getElementById("resumeName").innerText = data.name;
     // Use innerHTML to add the role/department line
     document.getElementById("resumeName").innerHTML += `<p><strong>${data.role}</strong> | ${data.department}</p>`;
     document.getElementById("resumeText").innerHTML = content;
-
     // Show the modal
     document.getElementById("resumeModal").style.display = "block";
     document.body.style.overflow = "hidden"; // Prevent background scrolling
 }
-
 // Keep the existing closeResume and window.onclick functions
 function closeResume() {
     document.getElementById("resumeModal").style.display = "none";
@@ -1370,8 +1439,3 @@ window.onload = function() {
 };
 </script>
 </body>
-<<<<<<< HEAD
-</html>
-=======
-</html>
->>>>>>> 6779939e239df7b1ea29bef4b9bde8d1e4c0c1e1

@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABADIS</title>
+<style>
+    /* ====== Base Styles ====== */
+    :root {
+        --sea-blue: #0077b6;
+        --light-blue: #90e0ef;
+        --deep-blue: #005f8c;
+        --sand: #fdf8f1;
+        --white: #ffffff;
+        --text-dark: #00334d;
+        --coral: #ff6b6b;
+        --teal: #1a936f;
+        --dark-sand: #e8e0d6;
+    }
+    /* Resume Modal Styles */
+    .resume-details {
+        color: #333;
+    }
+    .resume-section {
+        margin-bottom: 1.8rem;
+    }
+    .resume-section h3 {
+        color: var(--sea-blue);
+        font-size: 1.5rem;
+        margin-bottom: 0.6rem;
+        padding-bottom: 0.4rem;
+        border-bottom: 2px solid var(--light-blue);
+    }
+    .resume-list {
+        padding-left: 1.3rem;
+    }
+    .resume-list li {
+        margin-bottom: 0.6rem;
+        line-height: 1.6;
+    }
+    .resume-contact {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+    .resume-contact a {
+        color: var(--sea-blue);
+        font-weight: 600;
+        text-decoration: underline;
+    }
+    .resume-contact a:hover {
+        color: var(--deep-blue);
+    }
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--sand);
+        color: var(--text-dark);
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+    h1, h2, h3, h4 {
+        font-weight: 700;
+        line-height: 1.2;
+    }
+    h2 {
+        font-size: 2.8rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-bottom: 1rem;
+    }
+    h2:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--sea-blue), var(--teal));
+        border-radius: 2px;
+    }
+    p {
+        margin-bottom: 1rem;
+    }
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+    .section {
+        padding: 6rem 0;
+    }
+    .text-center {
+        text-align: center;
+    }
+    /* ====== Enhanced Header ====== */
+    header {
+        background: linear-gradient(135deg, var(--sea-blue), var(--deep-blue));
+        color: var(--white);
+        padding: 5rem 0;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        position: relative;
+        overflow: hidden;
+        z-index: 10;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .header-content {
+        position: relative;
+        z-index: 2;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+    .header-content h1 {
+        font-size: 4rem;
+        margin-bottom: 1.5rem;
+        text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+        letter-spacing: 2px;
+        font-weight: 800;
+        background: linear-gradient(to right, var(--white), var(--light-blue));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: glow 2s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+        from { text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+        to { text-shadow: 0 0 20px rgba(255,255,255,0.5), 0 0 30px rgba(144, 224, 239, 0.5); }
+    }
+    .header-content p {
+        font-size: 1.5rem;
+        opacity: 0.95;
+        max-width: 700px;
+        margin: 0 auto 2.5rem;
+        font-weight: 300;
+        letter-spacing: 0.5px;
+    }
+    .header-buttons {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+    }
+    .btn {
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        border: none;
+        cursor: pointer;
+        display: inline-block;
+        text-align: center;
+    }
+    .btn:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+        transition: 0.6s;
+        z-index: -1;
+    }
+    .btn:hover:before {
+        left: 100%;
+    }
+    .btn-primary {
+        background: var(--white);
+        color: var(--sea-blue);
+        border: 2px solid var(--white);
+    }
+    .btn-primary:hover {
+        background: transparent;
+        color: var(--white);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+    .btn-secondary {
+        background: transparent;
+        color: var(--white);
+        border: 2px solid var(--white);
+    }
+    .btn-secondary:hover {
+        background: var(--white);
+        color: var(--sea-blue);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+    .ocean-bubbles {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+    .bubble {
+        position: absolute;
+        bottom: -50px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        animation: bubble-rise 15s infinite ease-in;
+        box-shadow: 0 0 10px rgba(255,255,255,0.3);
+    }
+    @keyframes bubble-rise {
+        0% {
+            transform: translateY(0) translateX(0);
+            opacity: 0;
+        }
+        10% {
+            opacity: 0.7;
+        }
+        90% {
+            opacity: 0.5;
+        }
+        100% {
+            transform: translateY(-100vh) translateX(20px);
+            opacity: 0;
+        }
+    }
+    /* ====== Enhanced Slideshow ====== */
+    .slideshow-section {
+        position: relative;
+        padding: 0;
+    }
+    .slideshow-container {
+        position: relative;
+        max-width: 100%;
+        height: 70vh;
+        min-height: 500px;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        margin: 0 auto;
+    }
+    .slides {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .slides.active {
+        opacity: 1;
+    }
+    .slides img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .slide-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0,119,182,0.2), rgba(0,51,77,0.7));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: white;
+        text-align: center;
+        padding: 3rem;
+        transition: all 0.5s ease;
+    }
+    .slide-overlay:hover {
+        background: linear-gradient(to bottom, rgba(0,119,182,0.3), rgba(0,51,77,0.8));
+    }
+    .slide-overlay h3 {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        text-shadow: 3px 3px 6px rgba(0,0,0,0.6);
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+    .slide-overlay p {
+        font-size: 1.4rem;
+        max-width: 700px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        font-weight: 300;
+        line-height: 1.7;
+    }
+    /* Slide navigation arrows */
+    .prev, .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2.5rem;
+        color: white;
+        background: rgba(0,119,182,0.3);
+        padding: 1rem;
+        cursor: pointer;
+        border-radius: 50%;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        z-index: 10;
+        text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid white;
+        backdrop-filter: blur(5px);
+    }
+    .prev:hover, .next:hover {
+        background: rgba(0,119,182,0.7);
+        transform: translateY(-50%) scale(1.15);
+        box-shadow: 0 0 20px rgba(0,119,182,0.5);
+    }
+    .next {
+        right: 3rem;
+    }
+    .prev {
+        left: 3rem;
+    }
+    /* Slide indicators */
+    .slide-indicators {
+        position: absolute;
+        bottom: 3rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 1rem;
+        z-index: 10;
+    }
+    .indicator {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.4);
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 2px solid white;
+        box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    }
+    .indicator.active {
+        background: white;
+        transform: scale(1.4);
+        box-shadow: 0 0 15px rgba(255,255,255,0.8);
+    }
+    .indicator:hover {
+        background: var(--light-blue);
+        transform: scale(1.5);
+    }
+    /* ====== About Us ====== */
+    .about {
+        background-color: var(--white);
+        position: relative;
+        overflow: hidden;
+    }
+    .about::before {
+        content: "";
+        position: absolute;
+        top: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, var(--sea-blue), var(--teal));
+        border-radius: 50%;
+        box-shadow: 0 0 0 20px var(--light-blue);
+        z-index: 1;
+    }
+    .about-content {
+        max-width: 900px;
+        margin: 3rem auto 0;
+        font-size: 1.25rem;
+        color: #333;
+        line-height: 1.9;
+        position: relative;
+        z-index: 2;
+    }
+    .about-content p {
+        margin-bottom: 2rem;
+        text-align: left;
+    }
+    .about-stats {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 3rem;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+    .stat-item {
+        text-align: center;
+        padding: 1.5rem;
+        background: var(--sand);
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease;
+        flex: 1;
+        min-width: 200px;
+    }
+    .stat-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--sea-blue);
+        margin-bottom: 0.5rem;
+    }
+    .stat-label {
+        font-size: 1.1rem;
+        color: var(--text-dark);
+        font-weight: 500;
+    }
+    /* ====== Team Section ====== */
+    .team {
+        background: linear-gradient(to bottom, var(--light-blue), #d1f0f7);
+        position: relative;
+        overflow: hidden;
+    }
+    .team h2 {
+        color: var(--text-dark);
+    }
+    .team-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 3rem;
+        margin-top: 3rem;
+    }
+    .member {
+        background-color: var(--white);
+        border-radius: 20px;
+        overflow: hidden;
+        width: 280px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        cursor: pointer;
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        transform-style: preserve-3d;
+    }
+    .member::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, var(--sea-blue), var(--teal));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s ease;
+        z-index: 2;
+    }
+    .member:hover {
+        transform: translateY(-25px) scale(1.05) rotateY(5deg);
+        box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+    }
+    .member:hover::before {
+        transform: scaleX(1);
+    }
+    .member img {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+        transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+    .member:hover img {
+        transform: scale(1.15);
+    }
+    .member-content {
+        padding: 2rem;
+        text-align: center;
+    }
+    .member h3 {
+        margin: 0 0 0.5rem;
+        color: var(--sea-blue);
+        font-size: 1.5rem;
+    }
+    .member p {
+        font-size: 1.1rem;
+        color: #555;
+        margin-bottom: 1rem;
+    }
+    .member-role {
+        display: inline-block;
+        background: linear-gradient(135deg, var(--sea-blue), var(--deep-blue));
+        color: white;
+        padding: 0.5rem 1.2rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+    /* Custom Scrollbar for Resume Modal */
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+.modal-content::-webkit-scrollbar-track {
+    background: var(--sand);
+    border-radius: 4px;
+}
+.modal-content::-webkit-scrollbar-thumb {
+    background: var(--sea-blue);
+    border-radius: 4px;
+}
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--deep-blue);
+}
+/* Custom Scrollbar for Resume Modal */
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+.modal-content::-webkit-scrollbar-track {
+    background: var(--sand);
+    border-radius: 4px;
+}
+.modal-content::-webkit-scrollbar-thumb {
+    background: var(--sea-blue);
+    border-radius: 4px;
+}
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--deep-blue);
+}
+/* ====== Modal ====== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    animation: fadeIn 0.3s ease forwards;
+    backdrop-filter: blur(5px);
+}
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+.modal-content {
+    background: var(--white);
+    margin: 3rem auto;
+    padding: 2.5rem;
+    border-radius: 15px;
+    width: 95%;
+    max-width: 800px;
+    animation: scaleIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    border-top: 5px solid var(--sea-blue);
+    position: relative;
+}
+@keyframes scaleIn {
+    from {transform: scale(0.8); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+}
+.close-modal {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    width: 40px;
+    height: 40px;
+    background: var(--sea-blue);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 100;
+    border: none;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+.close-modal:hover {
+    background: var(--deep-blue);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.modal-content h2 {
+    color: var(--sea-blue);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--light-blue);
+    font-size: 1.8rem;
+}
+/* Resume Modal Styles */
+.resume-details {
+    color: #333;
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+.resume-section {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: 10px;
+    background: rgba(253, 248, 241, 0.5);
+    transition: all 0.3s ease;
+}
+.resume-section:hover {
+    background: rgba(253, 248, 241, 0.8);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+.resume-section h3 {
+    color: var(--sea-blue);
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 2px solid var(--light-blue);
+}
+.resume-list {
+    padding-left: 1.2rem;
+}
+.resume-list li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+    padding: 0.2rem 0;
+}
+.resume-contact {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(144, 224, 239, 0.2);
+    border-radius: 10px;
+    text-align: center;
+}
+.resume-contact a {
+    color: var(--sea-blue);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+.resume-contact a:hover {
+    color: var(--deep-blue);
+    background: rgba(0, 119, 182, 0.1);
+    text-decoration: underline;
+}
+    /* ====== Footer ====== */
+    footer {
+        background: linear-gradient(135deg, var(--sea-blue), var(--deep-blue));
+        color: var(--white);
+        padding: 5rem 0 3rem;
+        text-align: center;
+        position: relative;
+        z-index: 10;
+    }
+    .footer-content {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    .footer-content h3 {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+        letter-spacing: 1px;
+    }
+    .footer-content p {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+    }
+    .footer-links {
+        margin: 3rem 0;
+    }
+    .footer-links a {
+        color: var(--white);
+        margin: 0 1.5rem;
+        text-decoration: none;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        padding: 0.8rem 1.5rem;
+        border-radius: 30px;
+        display: inline-block;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.2);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .footer-links a:hover {
+        background: rgba(255,255,255,0.2);
+        transform: translateY(-8px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    /* ====== Enhanced Wave Animation ====== */
+    .wave-container {
+        position: relative;
+        width: 100%;
+        height: 150px;
+        overflow: hidden;
+    }
+    .wave {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 200%;
+        height: 100%;
+        background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23ffffff" fill-opacity="1" d="M0,192L40,192C80,192,160,192,240,181.3C320,171,400,149,480,144C560,139,640,149,720,170.7C800,192,880,224,960,218.7C1040,213,1120,171,1200,149.3C1280,128,1360,128,1400,128L1440,128L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path></svg>') repeat-x;
+        background-size: 50% 100%;
+        animation: wave-animation 12s linear infinite;
+    }
+    .wave:nth-child(2) {
+        animation: wave-animation 15s linear infinite;
+        opacity: 0.5;
+        bottom: 10px;
+        background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23ffffff" fill-opacity="0.7" d="M0,192L40,192C80,192,160,192,240,181.3C320,171,400,149,480,144C560,139,640,149,720,170.7C800,192,880,224,960,218.7C1040,213,1120,171,1200,149.3C1280,128,1360,128,1400,128L1440,128L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path></svg>') repeat-x;
+        background-size: 50% 100%;
+    }
+    .wave:nth-child(3) {
+        animation: wave-animation 18s linear infinite;
+        opacity: 0.3;
+        bottom: 20px;
+        background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23ffffff" fill-opacity="0.4" d="M0,192L40,192C80,192,160,192,240,181.3C320,171,400,149,480,144C560,139,640,149,720,170.7C800,192,880,224,960,218.7C1040,213,1120,171,1200,149.3C1280,128,1360,128,1400,128L1440,128L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path></svg>') repeat-x;
+        background-size: 50% 100%;
+    }
+    @keyframes wave-animation {
+        0% {
+            transform: translateX(0);
+        }
+        50% {
+            transform: translateX(-25%);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+    .wave-divider {
+        position: relative;
+        width: 100%;
+        height: 150px;
+        background: var(--white);
+        overflow: hidden;
+    }
+    .wave-divider .wave {
+        background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%2390e0ef" fill-opacity="1" d="M0,192L40,192C80,192,160,192,240,181.3C320,171,400,149,480,144C560,139,640,149,720,170.7C800,192,880,224,960,218.7C1040,213,1120,171,1200,149.3C1280,128,1360,128,1400,128L1440,128L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path></svg>') repeat-x;
+        background-size: 50% 100%;
+    }
+    .wave-divider .wave:nth-child(2) {
+        background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%2390e0ef" fill-opacity="0.7" d="M0,192L40,192C80,192,160,192,240,181.3C320,171,400,149,480,144C560,139,640,149,720,170.7C800,192,880,224,960,218.7C1040,213,1120,171,1200,149.3C1280,128,1360,128,1400,128L1440,128L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path></svg>') repeat-x;
+        background-size: 50% 100%;
+    }
+    .wave-divider .wave:nth-child(3) {
+        background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%2390e0ef" fill-opacity="0.4" d="M0,192L40,192C80,192,160,192,240,181.3C320,171,400,149,480,144C560,139,640,149,720,170.7C800,192,880,224,960,218.7C1040,213,1120,171,1200,149.3C1280,128,1360,128,1400,128L1440,128L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path></svg>') repeat-x;
+        background-size: 50% 100%;
+    }
+    /* ====== Responsive ====== */
+    @media (max-width: 1200px) {
+        .header-content h1 {
+            font-size: 3.5rem;
+        }
+        .slideshow-container {
+            height: 60vh;
+        }
+        .slide-overlay h3 {
+            font-size: 2.5rem;
+        }
+        .slide-overlay p {
+            font-size: 1.2rem;
+        }
+    }
+    @media (max-width: 992px) {
+        .header-content h1 {
+            font-size: 3rem;
+        }
+        .header-content p {
+            font-size: 1.3rem;
+        }
+        .slideshow-container {
+            height: 50vh;
+        }
+        .slide-overlay {
+            padding: 2rem;
+        }
+        .slide-overlay h3 {
+            font-size: 2.2rem;
+        }
+        .slide-overlay p {
+            font-size: 1.1rem;
+        }
+        .about-stats {
+            gap: 1.5rem;
+        }
+        .stat-item {
+            min-width: 180px;
+        }
+    }
+    @media (max-width: 768px) {
+        .section {
+            padding: 4rem 0;
+        }
+        header {
+            padding: 3rem 0;
+            min-height: 80vh;
+        }
+        .header-content h1 {
+            font-size: 2.5rem;
+        }
+        .header-content p {
+            font-size: 1.2rem;
+        }
+        h2 {
+            font-size: 2.2rem;
+        }
+        .team-container {
+            flex-direction: column;
+            align-items: center;
+        }
+        .slides {
+            height: 50vh;
+        }
+        .wave-container, .wave-divider {
+            height: 100px;
+        }
+        .slide-overlay h3 {
+            font-size: 2rem;
+        }
+        .slide-overlay p {
+            font-size: 1rem;
+        }
+        .member {
+            width: 300px;
+        }
+        .header-buttons {
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .btn {
+            width: 80%;
+            text-align: center;
+        }
+        .prev, .next {
+            width: 50px;
+            height: 50px;
+            font-size: 2rem;
+        }
+        .next {
+            right: 1.5rem;
+        }
+        .prev {
+            left: 1.5rem;
+        }
+        .about-stats {
+            flex-direction: column;
+            align-items: center;
+        }
+        .stat-item {
+            width: 100%;
+            max-width: 300px;
+        }
+    }
+    @media (max-width: 480px) {
+        .container {
+            padding: 0 1.5rem;
+        }
+        header {
+            padding: 2rem 0;
+            min-height: 70vh;
+        }
+        .header-content h1 {
+            font-size: 2rem;
+        }
+        .header-content p {
+            font-size: 1rem;
+        }
+        h2 {
+            font-size: 1.8rem;
+        }
+        .section {
+            padding: 3rem 0;
+        }
+        .slides {
+            height: 40vh;
+        }
+        .slide-overlay {
+            padding: 1.5rem;
+        }
+        .slide-overlay h3 {
+            font-size: 1.7rem;
+        }
+        .about-content {
+            font-size: 1.1rem;
+        }
+        .prev, .next {
+            font-size: 1.8rem;
+            padding: 0.7rem;
+            width: 40px;
+            height: 40px;
+        }
+        .footer-links a {
+            margin: 0 0.8rem 1rem;
+            padding: 0.7rem 1.2rem;
+            font-size: 0.9rem;
+        }
+        .slide-indicators {
+            gap: 0.7rem;
+            bottom: 2rem;
+        }
+        .indicator {
+            width: 12px;
+            height: 12px;
+        }
+        .modal-content {
+            padding: 2rem 1.5rem;
+            margin: 3rem auto;
+        }
+        .modal-content h2 {
+            font-size: 1.8rem;
+        }
+        .modal-content p {
+            font-size: 1.1rem;
+        }
+    }
+</style>
+</head>
+<body>
+<header>
+    <div class="ocean-bubbles" id="bubbles"></div>
+    <div class="header-content">
+        <h1>ABADIS</h1>
+        <p>M.A.P</p>
+        <div class="header-buttons">
+            <a href="#about" class="btn btn-primary">Discover Our Mission</a>
+            <a href="#team" class="btn btn-secondary">Meet Our Experts</a>
+        </div>
+    </div>
+</header>
+<!-- Enhanced Slideshow -->
+<div class="slideshow-section">
+    <div class="slideshow-container">
+        <div class="slides active">
+            <img src="https://placehold.co/1200x500/0077b6/ffffff?text=Ocean+Ecosystem" alt="Ocean Ecosystem">
+            <div class="slide-overlay">
+                <h3>Pure Ocean Environment</h3>
+                <p>Our farms are integrated with natural ecosystems to preserve marine biodiversity</p>
+            </div>
+        </div>
+        <div class="slides">
+            <img src="https://placehold.co/1200x500/0096c7/ffffff?text=Modern+Aquaculture" alt="Modern Aquaculture">
+            <div class="slide-overlay">
+                <h3>Cutting-Edge Technology</h3>
+                <p>Advanced monitoring systems ensure optimal conditions for marine life</p>
+            </div>
+        </div>
+        <div class="slides">
+            <img src="https://placehold.co/1200x500/90e0ef/00334d?text=Sustainable+Harvest" alt="Sustainable Harvest">
+            <div class="slide-overlay">
+                <h3>Sustainable Harvest</h3>
+                <p>Eco-friendly practices that protect our oceans for future generations</p>
+            </div>
+        </div>
+        <!-- Navigation arrows -->
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+        <!-- Slide indicators -->
+        <div class="slide-indicators">
+            <div class="indicator active" onclick="currentSlide(1)"></div>
+            <div class="indicator" onclick="currentSlide(2)"></div>
+            <div class="indicator" onclick="currentSlide(3)"></div>
+        </div>
+    </div>
+</div>
+<!-- Animated Wave Divider -->
+<div class="wave-container">
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+</div>
+<!-- About Us -->
+<section class="about section" id="about">
+    <div class="container">
+        <h2 class="text-center">About Our Mission</h2>
+        <div class="about-content">
+            <p>
+                environmental engineering, aquaculture, advanced spreadsheet modeling, renewable energy solutions, international trade, and financial expertise.
+            </p>
+            <p>
+                We are committed to delivering innovative and high-quality services in engineering and sustainable aquaculture, while advancing technological solutions and knowledge-driven practices. In parallel, we enhance global business opportunities through export-import operations, regulatory compliance, and strategic brand development.
+            </p>
+            <p>
+                By bridging technical excellence with international trade and academic collaboration, we aim to foster innovation, drive sustainable growth, and build enduring global partnership.
+            </p>
+        </div>
+        <div class="about-stats">
+            <div class="stat-item">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Research Projects</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Sustainable Practices</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">20+</div>
+                <div class="stat-label">Global Partners</div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Wave Divider -->
+<div class="wave-divider">
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+</div>
+<!-- Team -->
+<section class="team section" id="team">
+    <div class="container">
+        <h2 class="text-center">Our Expert Team</h2>
+        <div class="team-container">
+            <!-- Amirhossein Jalaeian -->
+            <div class="member" onclick='openResume("amirhossein")'>
+                <img src="images/Amirhossein.jpg" alt="Amirhossein Jalaeian">
+                <div class="member-content">
+                    <h3>Amirhossein Jalaeian</h3>
+                    <p>Environmental Engineer</p>
+                    <span class="member-role">R&D & Modeling</span>
+                </div>
+            </div>
+            <!-- Mohammad Gholizadeh -->
+            <div class="member" onclick='openResume("gholizadeh")'>
+                <img src="images/gholizadeh.png" alt="Mohammad Gholizadeh">
+                <div class="member-content">
+                    <h3>Mohammad Gholizadeh</h3>
+                    <p>Environmental Engineering PhD</p>
+                    <span class="member-role">R&D & Bioeconomic Modeling</span>
+                </div>
+            </div>
+              <!-- Ali Haji Ketabi -->
+            <div class="member" onclick='openResume("amirhossein")'>
+                <img src="images/Ali.jpg" alt="Ali Haji Ketabi">
+                <div class="member-content">
+                    <h3>Ali Haji Ketabi</h3>
+                    <p>Environmental Engineer</p>
+                    <span class="member-role">R&D & Modeling</span>
+                </div>
+            </div>
+              <!-- Afshin Kiani -->
+            <div class="member" onclick='openResume("amirhossein")'>
+                <img src="images/Amirhossein.jpg" alt="Amirhossein Jalaeian">
+                <div class="member-content">
+                    <h3>Afshin Kiani</h3>
+                    <p>Environmental Engineer</p>
+                    <span class="member-role">R&D & Modeling</span>
+                </div>
+            </div>
+            <!-- Other team members can go here -->
+            <!--
+            <div class="member" onclick='openResume("jane")'>
+                <img src="https://placehold.co/280x280/0096c7/ffffff?text=Jane+Smith" alt="Jane Smith">
+                <div class="member-content">
+                    <h3>Jane Smith</h3>
+                    <p>Systems Engineer</p>
+                    <span class="member-role">Technology & Innovation</span>
+                </div>
+            </div>
+            -->
+            <!-- Rouhollah Khodabandelou -->
+            <div class="member" onclick='openResume("khodabandelou")'>
+                <img src="images/Khodabandelou.jpg" alt="Rouhollah Khodabandelou">
+                <div class="member-content">
+                    <h3>Rouhollah Khodabandelou</h3>
+                    <p>PhD Assistant Professor (Educational Technology)</p>
+                    <span class="member-role">Research & Academic Development</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Resume Modal -->
+<div id="resumeModal" class="modal">
+    <div class="modal-content">
+        <button class="close-modal" onclick="closeResume()">&times;</button>
+        <h2 id="resumeName"></h2>
+        <div id="resumeText" class="resume-details"></div>
+    </div>
+</div>
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <h3>ABADIS</h3>
+            <p>Contact us: Abadis.omantrade@gmail.com | +96892110371</p>
+            <div class="footer-links">
+                <a href="#">LinkedIn</a>
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+            </div>
+            <p style="margin-top: 3rem; opacity: 0.8; font-size: 1rem;">© 2025 Abadis. Protecting our oceans, one harvest at a time.</p>
+        </div>
+    </div>
+</footer>
+<script>
+// Create ocean bubbles for header
+function createBubbles() {
+    const bubblesContainer = document.getElementById('bubbles');
+    const bubbleCount = 40;
+    for (let i = 0; i < bubbleCount; i++) {
+        const bubble = document.createElement('div');
+        bubble.classList.add('bubble');
+        // Random size between 5px and 50px
+        const size = Math.random() * 45 + 5;
+        bubble.style.width = `${size}px`;
+        bubble.style.height = `${size}px`;
+        // Random position
+        bubble.style.left = `${Math.random() * 100}%`;
+        // Random animation delay and duration
+        bubble.style.animationDelay = `${Math.random() * 20}s`;
+        bubble.style.animationDuration = `${25 + Math.random() * 25}s`;
+        bubblesContainer.appendChild(bubble);
+    }
+}
+// Enhanced Slideshow functionality
+let slideIndex = 1;
+showSlides(slideIndex);
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+function showSlides(n) {
+    let slides = document.getElementsByClassName("slides");
+    let indicators = document.getElementsByClassName("indicator");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+    }
+    for (let i = 0; i < indicators.length; i++) {
+        indicators[i].className = indicators[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].classList.add("active");
+    indicators[slideIndex-1].className += " active";
+}
+// Auto slide change
+setInterval(() => {
+    plusSlides(1);
+}, 7000);
+// Resume Data
+const resumeData = {
+    amirhossein: {
+        name: "Amirhossein Jalaeian Hassanpour",
+        role: "Environmental Engineer",
+        department: "R&D & Modeling",
+        phone: "(+98) 912-20-10-715",
+        email: "amirhosseinjalaeian@gmail.com",
+        linkedin: "https://linkedin.com/in/amirhossein-jalaeian",
+        experience: [
+            "Environmental Engineer with +8 years experience specializing in aquaculture systems (RAS/ERAS), bioeconomic modeling, and hydrodynamic modeling (ROMS, MIKE21).",
+            "Developed Iran's first 7-sensor water quality CTD device at Sepahan Tech.",
+            "Executing environmental projects for Iranian Fisheries Org. and Dept. of Environment.",
+            "National Elite Member with diverse project leadership experience including: serving as Project Supervisor for Tehran's Waste Management Plan and managing multiple construction projects (commercial/residential high-rises) from planning to execution.",
+            "Completed specialized training in business management, leadership, and strategic decision-making (MBA - University of Tehran)."
+        ],
+        projects: [
+            "Modeling & Optimization of Shrimp Growth in RAS (Oman, Muscat)",
+            "Executive Director of the Aquaculture Cage farming Project (Iran, Southern Caspian Sea)",
+            "Developed Aquaculture Integrated Model (AIM) for aquaculture species",
+            "Designed Bioeconomic Models for cost-benefit optimization",
+            "Recirculating Aquaculture System (RAS) Design: ERAS (Shiraz University), RAS (Daliran), RAS (Delvar)",
+            "Development of skimmer (MANA) by managing the execution team and integrating advanced mechanical systems",
+            "Developed and calibrated CTD and PTL devices for environmental monitoring",
+            "Technical supervisor of the implementation of the waste separation project in Tehran"
+        ],
+        skills: "Aquaculture Modeling, Numerical Ocean Modeling, CE-QUAL-W2, MIKE21, ROMS, Oil Spill Modeling, Data-Mining, MSP, Linux, MATLAB, Data analysis",
+        education: [
+            "MBA - University of Tehran (Specialized training in business management, leadership, and strategic decision-making)",
+            "BSc in ... (Please provide specific degree and university if available)"
+            // Add more education items if needed
+        ]
+    },
+    gholizadeh: {
+        name: "Mohammad Gholizadeh",
+        role: "Environmental Engineer (Aquaculture Modeling)",
+        department: "R&D & Bioeconomic Modeling",
+        phone: "(+96) 891-98-44-47",
+        email: "mohamadgh@gmail.com",
+        linkedin: "https://www.linkedin.com/in/mohammad-gholizadeh-...",
+        experience: [
+            "Environmental Engineer with Ph.D. in Aquaculture Modeling (UPM University, Malaysia).",
+            "Thesis: DEVELOPMENT OF AN INTEGRATED MODEL FOR SUSTAINABLE AQUACULTURE AND OPTIMIZATION OF FISH PRODUCTION.",
+            "Advisor Iran Aquaculture Development Director & Iran University of Science and Technology, Marine Aquaculture Service Center.",
+            "Lecturer of FAO Regional 1st Shrimp Farming Training Course.",
+            "Key Speaker at 2nd International Iran Cold Water Conference.",
+            "Completed specialized training in business management, leadership, and strategic decision-making (MBA - University of Tehran)."
+        ],
+        projects: [
+            "Caspian mariculture Investigation BioEconomic and TRIX model.",
+            "Design of 10 RAS and PRAS fish farms.",
+            "Design of 20 Shrimp Farm Complexes.",
+            "BioEconomic Model & Production Plan Optimization for about 30 Aquaculture Projects.",
+            "FSM Fish Farm Scale Model for 20 projects.",
+            "Marine Hatchery in Qeshem Island Engineering and Modeling.",
+            "Caviar Fish farms in Caspian sea coastline Engineering and Modeling (3 private sector).",
+            "Shrimp Farm Complex in Oman Production Plan Modeling.",
+            "PAW Plasma Activated Water in RAS.",
+            "Modeling of shrimp farm impact on marine environment (International workshop, Izmir, Turkey, 2005)."
+        ],
+        skills: "Aquaculture Integrated Modeling (AIM), Bioeconomic Modeling, Numerical Modeling, Fish Production Optimization, RAS/PRAS Design, Shrimp Farming, MATLAB, Data analysis, Environmental Impact Assessment",
+        education: [
+            "2016: Ph.D. Environmental Engineering (Aquaculture Modeling) - UPM University Putra Malaysia.",
+            "1991: BS Hydraulic Structure - Amirkabir (Tehran Polytechnic) University.",
+            "1985: BS Civil and Structural Engineer - Isfahan University of Technology."
+        ]
+    },
+    khodabandelou: {
+        name: "Rouhollah Khodabandelou, PhD",
+        role: "Assistant Professor (Educational Technology)",
+        department: "Research & Academic Development",
+        phone: "(+98) 912-08-92-320",
+        email: "r.khodabandelou@squ.edu.om",
+        linkedin: "https://www.linkedin.com/in/dr-khodabandelou",
+        website: "https://squ.academia.edu/RouhollahKHODABANDELOU",
+        experience: [
+            "Assistant Professor at Sultan Qaboos University (SQU), College of Education, Department of Educational Technology, Muscat, Oman (2022-Present).",
+            "Former Faculty Member at Allameh Tabatabaei University (ATU), Tehran, Iran (2018-2022).",
+            "Former Faculty Member at Islamic Azad University (IAU), Central Tehran Branch, Tehran, Iran (2011-2018).",
+            "Extensive experience in teaching, research, and academic leadership in Educational Technology, Instructional Design, and ICT in Education.",
+            "Supervisor for numerous postgraduate and undergraduate research projects.",
+            "Published over 80 scholarly works including peer-reviewed journal articles, conference proceedings, book chapters, and technical reports."
+        ],
+        projects: [
+            "Supervising and mentoring postgraduate and undergraduate research projects in Educational Technology.",
+            "Developing and implementing innovative teaching and learning strategies using ICT.",
+            "Conducting research in Bibliometric Analysis, Higher Education Assessment and Evaluation, and E-Learning.",
+            "Participating in various academic development initiatives at SQU and previous institutions."
+        ],
+        skills: "Educational Technology, Instructional Design, E-Learning, Blended Learning, ICT in Education, Research Methodology, Bibliometric Analysis, Academic Leadership, Teaching and Learning in Higher Education",
+        memberships: [
+            "Pennsylvania Association for Educational Communications and Technology (2021-Present)",
+            "Association for Educational Communications and Technology (2019-Present)",
+            "Iranian Association of Educational Technology (2020-Present)",
+            "Florida Educational Research Association (FERA) (2022-Present)"
+        ],
+        researchInterests: [
+            "Higher Education (Assessment and Evaluation)",
+            "Bibliometric Analysis",
+            "Educational Technology",
+            "Instructional Design",
+            "E-Learning/Blended Learning",
+            "ICT in Education"
+        ],
+        publications: [
+            "Peer reviewed journal articles: 48",
+            "Not reviewed papers: 2",
+            "Conference proceedings: 26",
+            "Book Chapters: 2",
+            "Technical reports: 1",
+            "Translated Books: 4",
+            "Letter to Editor: 1",
+            "Total Publications: 84"
+        ],
+        education: [
+            "2008-2014: PhD in Educational Technology, University Putra Malaysia (UPM), Serdang, Malaysia.",
+            "2005-2006: M.S. in Educational Technology, Arak University, Arak, Iran.",
+            "2000-2004: BA in Educational Technology, Arak University, Arak, Iran."
+        ]
+    }
+};
+// Enhanced Modal Function for Structured Resumes - Modified to show Projects before Education
+function openResume(memberId) {
+    const data = resumeData[memberId];
+    if (!data) {
+        console.error("Resume data not found for member ID:", memberId);
+        return;
+    }
+
+    // Helper function to safely create a section if data exists and is an array
+    function createListSection(title, dataArray) {
+        if (dataArray && Array.isArray(dataArray) && dataArray.length > 0) {
+            return `
+            <div class="resume-section">
+                <h3>${title}</h3>
+                <ul class="resume-list">
+                    ${dataArray.map(item => `<li>${item}</li>`).join('')}
+                </ul>
+            </div>
+            `;
+        }
+        return ''; // Return empty string if no data
+    }
+
+    // Helper function for simple text fields
+    function createTextSection(title, textContent) {
+         if (textContent) { // Check if it's not null, undefined, or empty string
+            return `
+            <div class="resume-section">
+                <h3>${title}</h3>
+                <p>${textContent}</p>
+            </div>
+            `;
+        }
+        return '';
+    }
+
+    // Ensure contact links are safe
+    const linkedinLink = data.linkedin || "#";
+    const websiteLink = data.website || "#";
+    const phoneText = data.phone || 'N/A';
+    const emailText = data.email || 'N/A';
+
+    // Build the content using the helper, placing Projects before Education
+    let content = `
+        <div class="resume-contact">
+            <p><strong>📞</strong> ${phoneText} | <strong>✉️</strong> ${emailText} | <strong>🔗</strong> <a href="${linkedinLink}" target="_blank">LinkedIn</a>`;
+
+    // Add website link only if it exists and is not a placeholder
+    if (data.website && data.website !== "#") {
+        content += ` | <strong>🌐</strong> <a href="${websiteLink}" target="_blank">Website</a>`;
+    }
+    content += `</p>
+        </div>
+    `;
+
+    // Use the helper for each section in the desired order
+    content += createListSection("Experience Highlights", data.experience);
+    content += createListSection("Projects", data.projects); // <-- Projects section moved up
+    content += createListSection("Education", data.education); // <-- Education section now comes after Projects
+    content += createTextSection("Skills", data.skills); // Skills is text, not a list
+    // Add other sections as needed using the helper
+    content += createListSection("Research Interests", data.researchInterests);
+    content += createListSection("Professional Memberships", data.memberships);
+    content += createListSection("Publications", data.publications);
+
+    // Update the modal content
+    document.getElementById("resumeName").innerText = data.name;
+    // Use innerHTML to add the role/department line
+    document.getElementById("resumeName").innerHTML += `<p><strong>${data.role}</strong> | ${data.department}</p>`;
+    document.getElementById("resumeText").innerHTML = content;
+
+    // Show the modal
+    document.getElementById("resumeModal").style.display = "block";
+    document.body.style.overflow = "hidden"; // Prevent background scrolling
+}
+
+// Keep the existing closeResume and window.onclick functions
+function closeResume() {
+    document.getElementById("resumeModal").style.display = "none";
+    document.body.style.overflow = "auto";
+}
+window.onclick = function(event) {
+    let modal = document.getElementById("resumeModal");
+    if (event.target == modal) {
+        closeResume();
+    }
+}
+// Initialize when page loads
+window.onload = function() {
+    createBubbles();
+    // Add smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+};
+</script>
+</body>
+<<<<<<< HEAD
+</html>
+=======
+</html>
+>>>>>>> 6779939e239df7b1ea29bef4b9bde8d1e4c0c1e1
